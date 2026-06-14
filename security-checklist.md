@@ -24,6 +24,8 @@
 ### Secrets & Credentials
 - [ ] 1. Exposed database credentials
 - [ ] 2. Public `.env` files
+  - [ ] Confirm `.env` is in `.gitignore` before the first commit
+  - [ ] If it was already pushed to git, rotate every key in that file immediately — treat them all as compromised
 - [ ] 3. Hardcoded API keys
 - [ ] 11. Build logs leaking secrets
 - [ ] 14. Secrets included in frontend JavaScript
@@ -43,6 +45,7 @@
 
 ### Database & Storage
 - [ ] 7. Open database read/write permissions
+  - [ ] Confirm Row Level Security (RLS) is enabled before going live
 - [ ] 8. Misconfigured Firebase / Supabase / S3 buckets
 - [ ] 41. Excessive database permissions for the app user
 
@@ -84,6 +87,8 @@
 
 ### AI-Specific
 - [ ] 39. Prompt injection in AI features
+  - [ ] Always wrap user inputs in clear delimiters (e.g. `<user_input>...</user_input>`) so they can't bleed into instructions
+  - [ ] Never allow user-supplied content to reach the system prompt position
 - [ ] 40. AI tools/actions allowed to access data without permission checks
 
 ### Data & Multi-tenancy
