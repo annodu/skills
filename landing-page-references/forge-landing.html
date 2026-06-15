@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge — The pipeline that never clocks out</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+<style>
+  * { font-family: 'Inter', sans-serif; box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  body { background: #0a0a0a; color: #fff; }
+  ::selection { background: rgba(167,139,250,0.3); }
+  a { cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav style="position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(10,10,10,0.9);backdrop-filter:blur(16px);padding:0 48px;height:54px;display:flex;align-items:center;justify-content:space-between">
+  <div style="display:flex;align-items:center;gap:8px">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M4 6h16M4 12h16M4 18h16" stroke="url(#nav-g)" stroke-width="2.5" stroke-linecap="round"/>
+      <defs><linearGradient id="nav-g" x1="4" y1="6" x2="20" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#60a5fa"/></linearGradient></defs>
+    </svg>
+    <span style="font-size:16px;font-weight:600;letter-spacing:-0.02em">Forge</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:0">
+    <a style="font-size:14px;color:#a1a1aa;padding:6px 14px;text-decoration:none">Product</a>
+    <a style="font-size:14px;color:#a1a1aa;padding:6px 14px;text-decoration:none">Resources</a>
+    <a style="font-size:14px;color:#a1a1aa;padding:6px 14px;text-decoration:none">Customers</a>
+    <a style="font-size:14px;color:#a1a1aa;padding:6px 14px;text-decoration:none">Pricing</a>
+    <a style="font-size:14px;color:#a1a1aa;padding:6px 14px;text-decoration:none">Contact</a>
+    <div style="width:1px;height:18px;background:rgba(255,255,255,0.1);margin:0 10px"></div>
+    <a style="font-size:14px;color:#a1a1aa;padding:6px 10px;text-decoration:none">Log in</a>
+    <a style="font-size:14px;font-weight:500;color:#000;background:#fff;padding:6px 16px;border-radius:20px;text-decoration:none;margin-left:4px">Sign up</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div style="padding:80px 48px 0">
+  <h1 style="font-size:60px;font-weight:600;line-height:1.02;letter-spacing:-0.04em;color:#fff;max-width:960px;margin-bottom:32px">The platform that<br>never clocks out</h1>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:64px">
+    <p style="font-size:16px;color:#a1a1aa;line-height:1.5;max-width:420px">Purpose-built for AI-era operations teams. Forge automates, monitors, and scales — while your team focuses on what matters.</p>
+    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+      <span style="font-size:14px;font-weight:600;color:#fff">New</span>
+      <a style="font-size:14px;color:#a1a1aa;text-decoration:none">Autonomous agents →</a>
+    </div>
+  </div>
+
+  <!-- Product mockup — edge to edge, no bottom border -->
+  <div style="width:100%;border:1px solid rgba(255,255,255,0.1);border-bottom:none;border-radius:12px 12px 0 0;overflow:hidden">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,0.07);background:#111112">
+      <div style="display:flex;gap:6px">
+        <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#ffbd2e"></div>
+        <div style="width:10px;height:10px;border-radius:50%;background:#28c840"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:5px;padding:3px 10px">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#8c8c96" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span style="font-size:12px;color:#8c8c96">app.forgeai.com</span>
+      </div>
+      <div style="width:60px"></div>
+    </div>
+    <div style="display:flex;height:580px;background:#111112">
+      <!-- Sidebar -->
+      <div style="width:220px;flex-shrink:0;border-right:1px solid rgba(255,255,255,0.07);padding:14px 10px;display:flex;flex-direction:column;gap:1px">
+        <div style="display:flex;align-items:center;gap:7px;padding:6px 8px;margin-bottom:8px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="url(#sb-g)" stroke-width="2.5" stroke-linecap="round"/><defs><linearGradient id="sb-g" x1="4" y1="6" x2="20" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#60a5fa"/></linearGradient></defs></svg>
+          <span style="font-size:13px;font-weight:600;color:#fff">Forge</span>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#8c8c96" stroke-width="2" style="margin-left:auto"><polyline points="8 9 12 5 16 9"/><polyline points="16 15 12 19 8 15"/></svg>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;padding:5px 8px;border-radius:5px;background:rgba(255,255,255,0.06)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e4e4e7" stroke-width="1.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          <span style="font-size:13px;color:#e4e4e7">Home</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;padding:5px 8px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8c8c96" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span style="font-size:13px;color:#8c8c96">Workflows</span></div>
+        <div style="display:flex;align-items:center;gap:7px;padding:5px 8px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8c8c96" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span style="font-size:13px;color:#8c8c96">Monitor</span></div>
+        <div style="display:flex;align-items:center;gap:7px;padding:5px 8px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#8c8c96" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span style="font-size:13px;color:#8c8c96">Agents</span></div>
+        <div style="padding:14px 8px 5px"><span style="font-size:10px;font-weight:500;color:#8c8c96;letter-spacing:0.1em;text-transform:uppercase">Workspaces</span></div>
+        <div style="display:flex;align-items:center;gap:7px;padding:5px 8px"><div style="width:6px;height:6px;border-radius:50%;background:#a78bfa;flex-shrink:0"></div><span style="font-size:13px;color:#8c8c96">Production</span><span style="margin-left:auto;font-size:11px;color:#8c8c96">14</span></div>
+        <div style="display:flex;align-items:center;gap:7px;padding:5px 8px"><div style="width:6px;height:6px;border-radius:50%;background:#60a5fa;flex-shrink:0"></div><span style="font-size:13px;color:#8c8c96">Staging</span><span style="margin-left:auto;font-size:11px;color:#8c8c96">31</span></div>
+        <div style="display:flex;align-items:center;gap:7px;padding:5px 8px"><div style="width:6px;height:6px;border-radius:50%;background:#34d399;flex-shrink:0"></div><span style="font-size:13px;color:#8c8c96">Dev</span><span style="margin-left:auto;font-size:11px;color:#8c8c96">6</span></div>
+      </div>
+      <!-- Main -->
+      <div style="flex:1;display:flex;flex-direction:column">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 20px;border-bottom:1px solid rgba(255,255,255,0.07)">
+          <div style="display:flex;align-items:center;gap:6px">
+            <span style="font-size:13px;font-weight:500;color:#e4e4e7">Home</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8c8c96" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            <span style="font-size:13px;color:#8c8c96">Acme Corp // Q3 Automation</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:12px;color:#8c8c96">02 / 145</span>
+            <span style="font-size:12px;color:#8c8c96">WF-2703</span>
+            <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#a78bfa,#60a5fa);display:flex;align-items:center;justify-content:center"><span style="font-size:10px;font-weight:600;color:#fff">AS</span></div>
+          </div>
+        </div>
+        <div style="flex:1;display:flex">
+          <div style="flex:1;padding:32px 40px;border-right:1px solid rgba(255,255,255,0.07)">
+            <h2 style="font-size:22px;font-weight:600;color:#fff;letter-spacing:-0.02em;margin-bottom:12px">Acme Corp // Q3 Automation</h2>
+            <p style="font-size:14px;color:#a1a1aa;line-height:1.7;margin-bottom:24px">Task routing confirmed. Escalate to human review — confidence score below threshold. Senior analyst notified at 2:30pm.</p>
+            <div style="display:flex;flex-direction:column;gap:3px">
+              <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)">
+                <div style="width:6px;height:6px;border-radius:50%;background:#f59e0b;flex-shrink:0"></div>
+                <span style="font-size:13px;color:#a1a1aa">In Progress</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                <span style="font-size:13px;color:#a1a1aa">High priority</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                <span style="font-size:13px;color:#a1a1aa">Review 2:30 PM today</span>
+              </div>
+            </div>
+          </div>
+          <div style="width:260px;flex-shrink:0;padding:24px;display:flex;flex-direction:column;gap:16px">
+            <div>
+              <div style="font-size:11px;font-weight:500;color:#8c8c96;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px">AI summary ready</div>
+              <div style="font-size:13px;color:#a1a1aa;line-height:1.6;padding:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(167,139,250,0.2);border-radius:7px">
+                <div style="color:#8c8c96;font-size:11px;margin-bottom:8px">To: jordan@acmecorp.io</div>
+                Hi Jordan, flagging this task for review — confidence score is 62%, below our 80% threshold for auto-approval...
+                <div style="margin-top:10px;display:flex;gap:6px">
+                  <button style="font-size:11px;font-weight:500;background:linear-gradient(135deg,#a78bfa,#60a5fa);color:#fff;border:none;border-radius:4px;padding:3px 9px;cursor:pointer">Send</button>
+                  <button style="font-size:11px;color:#a1a1aa;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:3px 9px;cursor:pointer">Edit</button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:500;color:#8c8c96;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px">Metrics</div>
+              <div style="display:flex;flex-direction:column;gap:4px">
+                <div style="font-size:12px;color:#a1a1aa;padding:6px 8px;background:rgba(255,255,255,0.03);border-radius:5px">Anomaly detected in run #4821</div>
+                <div style="font-size:12px;color:#a1a1aa;padding:6px 8px;background:rgba(255,255,255,0.03);border-radius:5px">Avg confidence: 91% this week</div>
+                <div style="font-size:12px;color:#a1a1aa;padding:6px 8px;background:rgba(255,255,255,0.03);border-radius:5px">14ms avg execution time</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Social proof -->
+<div style="border-top:1px solid rgba(255,255,255,0.07);border-bottom:1px solid rgba(255,255,255,0.07);padding:28px 0;margin-top:1px">
+  <div style="padding:0 48px;display:flex;align-items:center;gap:16px">
+    <span style="font-size:13px;color:#8c8c96;white-space:nowrap;flex-shrink:0">Trusted by</span>
+    <div style="display:flex;align-items:center;gap:32px;flex-wrap:wrap">
+      <span style="font-size:14px;font-weight:500;color:#8c8c96">Clearfront</span>
+      <span style="font-size:14px;font-weight:500;color:#8c8c96">Stackline</span>
+      <span style="font-size:14px;font-weight:500;color:#8c8c96">Velo</span>
+      <span style="font-size:14px;font-weight:500;color:#8c8c96">Meridian</span>
+      <span style="font-size:14px;font-weight:500;color:#8c8c96">Rootbase</span>
+      <span style="font-size:14px;font-weight:500;color:#8c8c96">Fern</span>
+    </div>
+  </div>
+</div>
+
+<!-- Feature intro -->
+<div style="border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1200px;margin:0 auto;padding:120px 48px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
+      <h2 style="font-size:52px;font-weight:600;line-height:1.05;letter-spacing:-0.04em;color:#fff">Make outreach<br>self-driving</h2>
+      <div style="padding-top:6px">
+        <p style="font-size:18px;line-height:1.65;color:#a1a1aa;margin-bottom:28px">Turn buying signals and customer context into pipeline that fills itself. Forge catches the trigger, writes the email, and routes the account — before your team even opens Slack.</p>
+        <a style="font-size:14px;color:#a1a1aa;text-decoration:none;display:flex;align-items:center;gap:8px">
+          <span style="color:#8c8c96;font-size:12px;letter-spacing:0.06em">1.0</span>
+          Prospecting agents →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3-col pillars -->
+<div style="border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)">
+    <div style="padding:48px 40px;border-right:1px solid rgba(255,255,255,0.07)">
+      <p style="font-size:11px;color:#8c8c96;letter-spacing:0.1em;margin-bottom:40px">FIG 0.1</p>
+      <div style="height:180px;display:flex;align-items:center;margin-bottom:40px">
+        <svg width="160" height="160" viewBox="0 0 160 160" fill="none"><g transform="translate(30,30)"><path d="M50 90 L90 68 L90 78 L50 100 Z" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="rgba(255,255,255,0.03)"/><path d="M10 68 L50 90 L50 100 L10 78 Z" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="rgba(255,255,255,0.02)"/><path d="M10 68 L50 46 L90 68 L50 90 Z" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="rgba(255,255,255,0.04)"/><path d="M50 72 L90 50 L90 60 L50 82 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="rgba(255,255,255,0.04)"/><path d="M10 50 L50 72 L50 82 L10 60 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="rgba(255,255,255,0.03)"/><path d="M10 50 L50 28 L90 50 L50 72 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="rgba(255,255,255,0.05)"/><path d="M50 54 L90 32 L90 42 L50 64 Z" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="rgba(255,255,255,0.05)"/><path d="M10 32 L50 54 L50 64 L10 42 Z" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="rgba(255,255,255,0.04)"/><path d="M10 32 L50 10 L90 32 L50 54 Z" stroke="rgba(255,255,255,0.2)" stroke-width="1" fill="rgba(255,255,255,0.06)"/><ellipse cx="50" cy="32" rx="16" ry="9" stroke="rgba(255,255,255,0.25)" stroke-width="1" fill="none"/></g></svg>
+      </div>
+      <h3 style="font-size:15px;font-weight:600;color:#e4e4e7;margin-bottom:10px">Built for purpose</h3>
+      <p style="font-size:14px;line-height:1.65;color:#a1a1aa">Shaped by the practices and principles of world-class revenue teams. Not another CRM bolt-on.</p>
+    </div>
+    <div style="padding:48px 40px;border-right:1px solid rgba(255,255,255,0.07)">
+      <p style="font-size:11px;color:#8c8c96;letter-spacing:0.1em;margin-bottom:40px">FIG 0.2</p>
+      <div style="height:180px;display:flex;align-items:center;margin-bottom:40px">
+        <svg width="160" height="160" viewBox="0 0 160 160" fill="none"><g transform="translate(20,20)"><path d="M60 20 L80 30 L80 50 L60 40 Z" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="rgba(255,255,255,0.04)"/><path d="M40 30 L60 20 L60 40 L40 50 Z" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="rgba(255,255,255,0.03)"/><path d="M40 30 L60 10 L80 30 L60 20 Z" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="rgba(255,255,255,0.06)"/><path d="M30 55 L55 44 L55 66 L30 77 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="rgba(255,255,255,0.03)"/><path d="M5 44 L30 55 L30 77 L5 66 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="rgba(255,255,255,0.02)"/><path d="M5 44 L30 33 L55 44 L30 55 Z" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="rgba(255,255,255,0.05)"/><path d="M82 55 L107 44 L107 66 L82 77 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="rgba(255,255,255,0.03)"/><path d="M57 44 L82 55 L82 77 L57 66 Z" stroke="rgba(255,255,255,0.15)" stroke-width="1" fill="rgba(255,255,255,0.02)"/><path d="M57 44 L82 33 L107 44 L82 55 Z" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="rgba(255,255,255,0.05)"/></g></svg>
+      </div>
+      <h3 style="font-size:15px;font-weight:600;color:#e4e4e7;margin-bottom:10px">Powered by AI agents</h3>
+      <p style="font-size:14px;line-height:1.65;color:#a1a1aa">Designed for workflows shared by humans and agents. From drafting first touches to booking the follow-up.</p>
+    </div>
+    <div style="padding:48px 40px">
+      <p style="font-size:11px;color:#8c8c96;letter-spacing:0.1em;margin-bottom:40px">FIG 0.3</p>
+      <div style="height:180px;display:flex;align-items:center;margin-bottom:40px">
+        <svg width="160" height="160" viewBox="0 0 160 160" fill="none"><g transform="translate(20,15)"><path d="M10 100 L60 72 L110 100 L60 128 Z" stroke="rgba(255,255,255,0.08)" stroke-width="1" fill="rgba(255,255,255,0.02)"/><path d="M10 90 L60 62 L110 90 L60 118 Z" stroke="rgba(255,255,255,0.1)" stroke-width="1" fill="rgba(255,255,255,0.025)"/><path d="M10 80 L60 52 L110 80 L60 108 Z" stroke="rgba(255,255,255,0.12)" stroke-width="1" fill="rgba(255,255,255,0.03)"/><path d="M10 70 L60 42 L110 70 L60 98 Z" stroke="rgba(255,255,255,0.14)" stroke-width="1" fill="rgba(255,255,255,0.035)"/><path d="M10 60 L60 32 L110 60 L60 88 Z" stroke="rgba(255,255,255,0.17)" stroke-width="1" fill="rgba(255,255,255,0.04)"/><path d="M10 50 L60 22 L110 50 L60 78 Z" stroke="rgba(255,255,255,0.19)" stroke-width="1" fill="rgba(255,255,255,0.045)"/><path d="M10 40 L60 12 L110 40 L60 68 Z" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="rgba(255,255,255,0.05)"/><path d="M10 30 L60 2 L110 30 L60 58 Z" stroke="rgba(255,255,255,0.26)" stroke-width="1" fill="rgba(255,255,255,0.06)"/></g></svg>
+      </div>
+      <h3 style="font-size:15px;font-weight:600;color:#e4e4e7;margin-bottom:10px">Designed for speed</h3>
+      <p style="font-size:14px;line-height:1.65;color:#a1a1aa">Reduces noise and restores momentum. Your team ships more pipeline with less effort and less cognitive overhead.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Feature 2 -->
+<div style="border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1200px;margin:0 auto;padding:120px 48px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start">
+      <h2 style="font-size:52px;font-weight:600;line-height:1.05;letter-spacing:-0.04em;color:#fff">Personalization<br>at scale</h2>
+      <div style="padding-top:6px">
+        <p style="font-size:18px;line-height:1.65;color:#a1a1aa;margin-bottom:28px">Every email reads like you wrote it yourself. Forge pulls from call notes, CRM history, and live signals — so the draft waiting in your inbox is already good enough to send.</p>
+        <a style="font-size:14px;color:#a1a1aa;text-decoration:none;display:flex;align-items:center;gap:8px">
+          <span style="color:#8c8c96;font-size:12px;letter-spacing:0.06em">2.0</span>
+          AI drafts →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonials -->
+<div style="border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1200px;margin:0 auto;padding:80px 48px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px">
+      <div style="position:relative;overflow:hidden;border-radius:14px;padding:40px;min-height:320px;background:linear-gradient(135deg,#ddd6fe,#bfdbfe);display:flex;flex-direction:column;justify-content:space-between">
+        <div style="position:absolute;right:-20px;bottom:-20px;font-size:200px;font-weight:700;color:rgba(99,102,241,0.08);line-height:1;pointer-events:none;user-select:none;letter-spacing:-0.08em">CF</div>
+        <p style="font-size:26px;font-weight:500;line-height:1.35;letter-spacing:-0.02em;color:#1e1b4b;max-width:420px;position:relative;z-index:1">"When I first opened Forge, I knew immediately this wasn't another sequencer. It felt like having a senior SDR who never sleeps."</p>
+        <div style="display:flex;align-items:center;gap:12px;position:relative;z-index:1">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(99,102,241,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#1e1b4b">Marcus Shen</div>
+            <div style="font-size:13px;color:#4338ca">VP Revenue · Clearfront</div>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;border-radius:14px;padding:40px;min-height:320px;background:linear-gradient(135deg,#fef08a,#fde047);display:flex;flex-direction:column;justify-content:space-between">
+        <div style="position:absolute;right:-20px;bottom:-20px;font-size:200px;font-weight:700;color:rgba(161,98,7,0.08);line-height:1;pointer-events:none;user-select:none;letter-spacing:-0.08em">SL</div>
+        <p style="font-size:26px;font-weight:500;line-height:1.35;letter-spacing:-0.02em;color:#1c1917;max-width:420px;position:relative;z-index:1">"We replaced 3 tools with Forge and our AEs actually use it. The drafts are good enough to send. That's the real unlock."</p>
+        <div style="display:flex;align-items:center;gap:12px;position:relative;z-index:1">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(161,98,7,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#92400e" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div>
+            <div style="font-size:14px;font-weight:600;color:#1c1917">Jamie Liu</div>
+            <div style="font-size:13px;color:#92400e">Head of Sales · Stackline</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Metrics -->
+<div style="border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1200px;margin:0 auto;padding:96px 48px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr)">
+      <div style="padding-right:40px;border-right:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:60px;font-weight:600;letter-spacing:-0.05em;color:#fff;line-height:1;margin-bottom:12px">4.2×</div>
+        <div style="font-size:14px;color:#a1a1aa;line-height:1.5">More meetings booked vs. manual outreach</div>
+      </div>
+      <div style="padding:0 40px;border-right:1px solid rgba(255,255,255,0.07)">
+        <div style="font-size:60px;font-weight:600;letter-spacing:-0.05em;color:#fff;line-height:1;margin-bottom:12px">68%</div>
+        <div style="font-size:14px;color:#a1a1aa;line-height:1.5">High priorityer reply rates on AI-personalized sequences</div>
+      </div>
+      <div style="padding-left:40px">
+        <div style="font-size:60px;font-weight:600;letter-spacing:-0.05em;color:#fff;line-height:1;margin-bottom:12px">11 min</div>
+        <div style="font-size:14px;color:#a1a1aa;line-height:1.5">Average time from signup to first sequence live</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div>
+  <div style="max-width:1200px;margin:0 auto;padding:160px 48px;text-align:center">
+    <h2 style="font-size:72px;font-weight:600;line-height:1.02;letter-spacing:-0.04em;color:#fff;margin-bottom:40px">Built for the future.<br>Available today.</h2>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px">
+      <a style="font-size:15px;font-weight:500;color:#000;background:#fff;padding:11px 26px;border-radius:28px;text-decoration:none">Get started</a>
+      <a style="font-size:15px;color:#a1a1aa;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);padding:11px 26px;border-radius:28px;text-decoration:none">Contact sales</a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="border-top:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1200px;margin:0 auto;padding:64px 48px 48px">
+    <div style="display:grid;grid-template-columns:64px 1fr 1fr 1fr 1fr 1fr;gap:40px;margin-bottom:64px">
+      <div>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="url(#ft-g)" stroke-width="2.5" stroke-linecap="round"/>
+          <defs><linearGradient id="ft-g" x1="4" y1="6" x2="20" y2="18" gradientUnits="userSpaceOnUse"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#60a5fa"/></linearGradient></defs>
+        </svg>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:#a1a1aa;margin-bottom:20px">Product</div>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Agents</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Workflows</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Monitor</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Analytics</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Pricing</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Security</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:#a1a1aa;margin-bottom:20px">Features</div>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Prospecting</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">AI Drafts</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Metrics</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Integrations</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Changelog</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:#a1a1aa;margin-bottom:20px">Company</div>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">About</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Customers</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Careers</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Blog</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Brand</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:#a1a1aa;margin-bottom:20px">Resources</div>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Documentation</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Download</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Status</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Production</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:500;color:#a1a1aa;margin-bottom:20px">Connect</div>
+        <div style="display:flex;flex-direction:column;gap:13px">
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Contact us</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">Community</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">X (Twitter)</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">LinkedIn</a>
+          <a style="font-size:14px;color:#8c8c96;text-decoration:none">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;align-items:center;gap:24px">
+      <a style="font-size:13px;color:#8c8c96;text-decoration:none">Privacy</a>
+      <a style="font-size:13px;color:#8c8c96;text-decoration:none">Terms</a>
+      <a style="font-size:13px;color:#8c8c96;text-decoration:none">DPA</a>
+      <a style="font-size:13px;color:#8c8c96;text-decoration:none">Security</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
